@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 /* IMPORTE El ARCHIVO CON EL NOMBRE_CLASE */
-const Ingediente = require('../models').ingediente;
+const Ingrediente = require('../models').ingrediente;
 /*retornar todos los clientes */
 router.get('/findAll/json', function (req, res, next) {
 
     /* MÉTODO ESTÁTICO findAll  */
 
-    Ingediente.findAll({
+    Ingrediente.findAll({
         attributes: { exclude: ["updatedAt", "createdAt"] },
     })
         .then(resultado => {
@@ -22,7 +22,7 @@ router.get('/findById/:id/json', function (req, res, next) {
 
     let id = req.params.id;
 
-    Ingediente.findByPk(id)
+    Ingrediente.findByPk(id)
         .then(instancia => {
             if (instancia) {
                 res.status(200).json(instancia);
@@ -35,7 +35,7 @@ router.get('/findById/:id/json', function (req, res, next) {
 /*metodo post*/
 router.post('/save', function (req, res, next) {
 
-    Ingediente.create(req.body)
+    Ingrediente.create(req.body)
         .then(instancia => {
             res.status(201).json(instancia);
         })
@@ -48,7 +48,7 @@ router.put('/update/:id', function (req, res, next) {
 
     let id = req.params.id;
 
-    Ingediente.findByPk(id)
+    Ingrediente.findByPk(id)
         .then(instancia => {
             if (instancia) {
 
@@ -71,7 +71,7 @@ router.delete('/delete/:id', function (req, res, next) {
 
     let id = req.params.id;
 
-    Ingediente.findByPk(id)
+    Ingrediente.findByPk(id)
         .then(instancia => {
             if (instancia) {
 
